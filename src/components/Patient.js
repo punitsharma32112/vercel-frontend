@@ -59,6 +59,25 @@ const Select = ({ children, ...props }) => (
 );
 
 export default function PatientDashboard() {
+  // Theme state: 'light' or 'dark'
+  const [theme, setTheme] = useState('light');
+
+  // Set font globally
+  useEffect(() => {
+    document.body.style.fontFamily = "'Inter', 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif";
+  }, []);
+
+  // Dynamically load theme CSS
+  useEffect(() => {
+    let themeLink = document.getElementById('theme-style');
+    if (!themeLink) {
+      themeLink = document.createElement('link');
+      themeLink.rel = 'stylesheet';
+      themeLink.id = 'theme-style';
+      document.head.appendChild(themeLink);
+    }
+    themeLink.href = theme === 'dark' ? '/src/theme-dark.css' : '/src/theme-light.css';
+  }, [theme]);
   const [showAppointments, setShowAppointments] = useState(false);
   const [showPrescriptions, setShowPrescriptions] = useState(false);
   const [activeTab, setActiveTab] = useState('Dashboard');
@@ -456,50 +475,62 @@ export default function PatientDashboard() {
   };
 
   return (
-    <div className="container">
-      <header className="header">
-        <div className="flex items-center space-x-2">
-          <Hospital className="h-6 w-6 text-blue-600" />
-          <span className="font-bold text-xl">Hospital Management System</span>
-        </div>
-        <button className="button" onClick={() => navigate('/')}>Sign Out</button>
-      </header>
-      <nav className="bg-blue-700 text-white p-4 rounded-lg mb-6">
-        <ul className="flex space-x-4 justify-center">
-          <li>
-            <button
-              className={`button ${activeTab === 'Dashboard' ? '' : 'bg-white text-blue-700 border border-blue-600'}`}
-              onClick={() => setActiveTab('Dashboard')}
-            >
-              <Home className="w-4 h-4 mr-2 inline" /> Dashboard
-            </button>
-          </li>
-          <li>
-            <button
-              className={`button ${activeTab === 'Profile' ? '' : 'bg-white text-blue-700 border border-blue-600'}`}
-              onClick={() => setActiveTab('Profile')}
-            >
-              <UserCircle className="w-4 h-4 mr-2 inline" /> Profile
-            </button>
-          </li>
-          <li>
-            <button
-              className={`button ${activeTab === 'Appointment Booking' ? '' : 'bg-white text-blue-700 border border-blue-600'}`}
-              onClick={() => setActiveTab('Appointment Booking')}
-            >
-              <CalendarIcon className="w-4 h-4 mr-2 inline" /> Appointment Booking
-            </button>
-          </li>
-        </ul>
-      </nav>
-      <main>
-        <h1 className="text-4xl font-bold text-blue-900 mb-8">
-          Welcome, {patientInfo?.firstName} {patientInfo?.lastName}
-        </h1>
-        {activeTab === 'Dashboard' && renderDashboard()}
-        {activeTab === 'Profile' && renderProfile()}
-        {activeTab === 'Appointment Booking' && renderAppointmentBooking()}
-      </main>
+    <div className="container" style={{ fontFamily: "'Inter', 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif" }}>
+      <aside style={{ position: 'fixed', left: 0, top: 0, height: '100vh', width: 60, background: 'rgba(30,41,59,0.95)', display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '1rem 0', zIndex: 1000 }}>
+        <button
+          className="button mb-4"
+          style={{ width: 40, height: 40, borderRadius: 20, fontSize: 18, fontWeight: 700 }}
+          title={theme === 'dark' ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
+          onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+        >
+          {theme === 'dark' ? '🌞' : '🌙'}
+        </button>
+      </aside>
+      <div style={{ marginLeft: 70 }}>
+        <header className="header">
+          <div className="flex items-center space-x-2">
+            <Hospital className="h-6 w-6 text-blue-600" />
+            <span className="font-bold text-xl">Hospital Management System</span>
+          </div>
+          <button className="button" onClick={() => navigate('/')}>Sign Out</button>
+        </header>
+        <nav className="bg-blue-700 text-white p-4 rounded-lg mb-6">
+          <ul className="flex space-x-4 justify-center">
+            <li>
+              <button
+                className={`button ${activeTab === 'Dashboard' ? '' : 'bg-white text-blue-700 border border-blue-600'}`}
+                onClick={() => setActiveTab('Dashboard')}
+              >
+                <Home className="w-4 h-4 mr-2 inline" /> Dashboard
+              </button>
+            </li>
+            <li>
+              <button
+                className={`button ${activeTab === 'Profile' ? '' : 'bg-white text-blue-700 border border-blue-600'}`}
+                onClick={() => setActiveTab('Profile')}
+              >
+                <UserCircle className="w-4 h-4 mr-2 inline" /> Profile
+              </button>
+            </li>
+            <li>
+              <button
+                className={`button ${activeTab === 'Appointment Booking' ? '' : 'bg-white text-blue-700 border border-blue-600'}`}
+                onClick={() => setActiveTab('Appointment Booking')}
+              >
+                <CalendarIcon className="w-4 h-4 mr-2 inline" /> Appointment Booking
+              </button>
+            </li>
+          </ul>
+        </nav>
+        <main>
+          <h1 className="text-4xl font-bold text-blue-900 mb-8">
+            Welcome, {patientInfo?.firstName} {patientInfo?.lastName}
+          </h1>
+          {activeTab === 'Dashboard' && renderDashboard()}
+          {activeTab === 'Profile' && renderProfile()}
+          {activeTab === 'Appointment Booking' && renderAppointmentBooking()}
+        </main>
+      </div>
     </div>
   );
 }

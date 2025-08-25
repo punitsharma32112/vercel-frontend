@@ -1,0 +1,24 @@
+/* Light Theme for Hospital Management System */
+body {
+  background: linear-gradient(135deg, #f8fafc 0%, #e0e7ff 100%);
+  color: #1e293b;
+}
+.header, .card, .form {
+  background: #fff !important;
+  color: #1e293b !important;
+}
+.button {
+  background: linear-gradient(90deg, #38bdf8 0%, #2563eb 100%);
+  color: #fff;
+}
+.button:hover {
+  background: linear-gradient(90deg, #2563eb 0%, #38bdf8 100%);
+}
+input, select {
+  background: #fff;
+  color: #1e293b;
+  border: 1px solid #cbd5e1;
+}
+input:focus, select:focus {
+  border-color: #2563eb;
+}
