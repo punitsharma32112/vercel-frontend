@@ -456,44 +456,46 @@ export default function PatientDashboard() {
   };
 
   return (
-    <div className="container">
-      <header className="header">
+    <div className="min-h-screen bg-blue-600">
+      <header className="bg-white p-4 flex justify-between items-center">
         <div className="flex items-center space-x-2">
           <Hospital className="h-6 w-6 text-blue-600" />
           <span className="font-bold text-xl">Hospital Management System</span>
         </div>
-        <button className="button" onClick={() => navigate('/')}>Sign Out</button>
+        <Button variant="outline" onClick={() => navigate('/')}>
+          Sign Out
+        </Button>
       </header>
-      <nav className="bg-blue-700 text-white p-4 rounded-lg mb-6">
+      <nav className="bg-blue-700 text-white p-4">
         <ul className="flex space-x-4 justify-center">
           <li>
-            <button
-              className={`button ${activeTab === 'Dashboard' ? '' : 'bg-white text-blue-700 border border-blue-600'}`}
+            <Button
+              variant={activeTab === 'Dashboard' ? 'outline' : 'ghost'}
               onClick={() => setActiveTab('Dashboard')}
             >
-              <Home className="w-4 h-4 mr-2 inline" /> Dashboard
-            </button>
+              <Home className="w-4 h-4 mr-2" /> Dashboard
+            </Button>
           </li>
           <li>
-            <button
-              className={`button ${activeTab === 'Profile' ? '' : 'bg-white text-blue-700 border border-blue-600'}`}
+            <Button
+              variant={activeTab === 'Profile' ? 'outline' : 'ghost'}
               onClick={() => setActiveTab('Profile')}
             >
-              <UserCircle className="w-4 h-4 mr-2 inline" /> Profile
-            </button>
+              <UserCircle className="w-4 h-4 mr-2" /> Profile
+            </Button>
           </li>
           <li>
-            <button
-              className={`button ${activeTab === 'Appointment Booking' ? '' : 'bg-white text-blue-700 border border-blue-600'}`}
+            <Button
+              variant={activeTab === 'Appointment Booking' ? 'outline' : 'ghost'}
               onClick={() => setActiveTab('Appointment Booking')}
             >
-              <CalendarIcon className="w-4 h-4 mr-2 inline" /> Appointment Booking
-            </button>
+              <CalendarIcon className="w-4 h-4 mr-2" /> Appointment Booking
+            </Button>
           </li>
         </ul>
       </nav>
-      <main>
-        <h1 className="text-4xl font-bold text-blue-900 mb-8">
+      <main className="container mx-auto px-4 py-8">
+        <h1 className="text-4xl font-bold text-white mb-8">
           Welcome, {patientInfo?.firstName} {patientInfo?.lastName}
         </h1>
         {activeTab === 'Dashboard' && renderDashboard()}
