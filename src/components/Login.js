@@ -3,7 +3,7 @@ import { Shield, User, Stethoscope, Eye, EyeOff } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 
 // ✅ Use your deployed backend URL here
-const BASE_URL = "https://vercel-backend-beta-eight.vercel.app";
+const BASE_URL = "https://vercel-backend-1-jr7k.onrender.com";
 
 const Login = () => {
   const navigate = useNavigate();

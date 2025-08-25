@@ -17,7 +17,7 @@ const Button = ({ children, variant = 'primary', className = '', ...props }) => 
   </button>
 );
 
-  const BASE_URL = "https://vercel-backend-beta-eight.vercel.app"; 
+  const BASE_URL = "https://vercel-backend-1-jr7k.onrender.com"; 
 
 const Card = ({ children, className = '' }) => (
   <div className={`bg-white rounded-lg shadow-md ${className}`}>

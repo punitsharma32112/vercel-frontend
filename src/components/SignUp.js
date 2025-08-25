@@ -38,7 +38,7 @@ const SignUp = () => {
     e.preventDefault();
     if (validateForm()) {
       try {
-        const response = await fetch('https://vercel-backend-beta-eight.vercel.app/api/signup', {
+        const response = await fetch('https://vercel-backend-1-jr7k.onrender.com/api/signup', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
