@@ -2,6 +2,9 @@ import React, { useState } from 'react';
 import { Shield, User, Stethoscope, Eye, EyeOff } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 
+// ✅ Use your deployed backend URL here
+const BASE_URL = "https://vercel-backend-beta-eight.vercel.app";
+
 const Login = () => {
   const navigate = useNavigate();
   const [selectedRole, setSelectedRole] = useState('patient');
@@ -19,19 +22,21 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch('http://localhost:5000/api/login', {
+      const response = await fetch(`${BASE_URL}/api/login`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({ email, password, role: selectedRole }),
       });
+
       if (response.ok) {
         const data = await response.json();
         localStorage.setItem('token', data.token);
         localStorage.setItem('userRole', data.role);
         localStorage.setItem('userEmail', email);
-        // Redirect based on role
+
+        // ✅ Redirect based on role
         if (data.role === 'admin') {
           navigate('/admin');
         } else if (data.role === 'doctor') {
@@ -41,7 +46,7 @@ const Login = () => {
         }
       } else {
         const errorData = await response.json();
-        setError(errorData.error);
+        setError(errorData.error || 'Login failed. Please try again.');
       }
     } catch (error) {
       setError('An error occurred. Please try again.');

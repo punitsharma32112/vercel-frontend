@@ -17,6 +17,8 @@ const Button = ({ children, variant = 'primary', className = '', ...props }) => 
   </button>
 );
 
+  const BASE_URL = "https://vercel-backend-beta-eight.vercel.app"; 
+
 const Card = ({ children, className = '' }) => (
   <div className={`bg-white rounded-lg shadow-md ${className}`}>
     {children}
@@ -111,7 +113,7 @@ export default function AdminDashboard() {
         // Handle not authenticated case
         return;
       }
-      const response = await fetch('http://localhost:5000/api/admin/profile', {
+      const response = await fetch(`${BASE_URL}/api/admin/profile`, {
         headers: {
           'Authorization': `Bearer ${token}`
         }
@@ -135,7 +137,7 @@ export default function AdminDashboard() {
       if (!token) {
         return;
       }
-      const response = await fetch('http://localhost:5000/api/admin/total-doctors', {
+      const response = await fetch(`${BASE_URL}/api/admin/total-doctors`, {
         headers: {
           'Authorization': `Bearer ${token}`
         }
@@ -157,7 +159,7 @@ export default function AdminDashboard() {
       if (!token) {
         return;
       }
-      const response = await fetch('http://localhost:5000/api/admin/total-patients', {
+      const response = await fetch(`${BASE_URL}/api/admin/total-patients`, {
         headers: {
           'Authorization': `Bearer ${token}`
         }
@@ -179,7 +181,7 @@ export default function AdminDashboard() {
       if (!token) {
         return;
       }
-      const response = await fetch('http://localhost:5000/api/admin/doctor-overview', {
+      const response = await fetch(`${BASE_URL}/api/admin/doctor-overview`, {
         headers: {
           'Authorization': `Bearer ${token}`
         }
@@ -201,7 +203,7 @@ export default function AdminDashboard() {
       if (!token) {
         return;
       }
-      const response = await fetch('http://localhost:5000/api/admin/patient-overview', {
+      const response = await fetch(`${BASE_URL}/api/admin/patient-overview`, {
         headers: {
           'Authorization': `Bearer ${token}`
         }
@@ -380,7 +382,7 @@ export default function AdminDashboard() {
           navigate('/login');
           return;
         }
-        const response = await fetch('http://localhost:5000/api/admin/profile', {
+        const response = await fetch(`${BASE_URL}/api/admin/profile`, {
           method: 'PUT',
           headers: {
             'Content-Type': 'application/json',
@@ -475,7 +477,7 @@ export default function AdminDashboard() {
           alert('You are not authenticated. Please log in.');
           return;
         }
-        const response = await fetch('http://localhost:5000/api/admin/add-doctor', {
+        const response = await fetch(`${BASE_URL}/api/admin/add-doctor`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -599,7 +601,7 @@ export default function AdminDashboard() {
           alert('You are not authenticated. Please log in.');
           return;
         }
-        const response = await fetch('http://localhost:5000/api/admin/add-admin', {
+        const response = await fetch(`${BASE_URL}/api/admin/add-admin`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
