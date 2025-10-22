@@ -77,7 +77,7 @@ export default function PatientDashboard() {
   const [prescriptions, setPrescriptions] = useState([]);
   const navigate = useNavigate();
 
-  const API_URL = 'https://vercel-backend-beta-eight.vercel.app';
+  const API_URL = 'https://vercel-backend-1-jr7k.onrender.com';
 
   useEffect(() => {
     fetchPatientProfile();

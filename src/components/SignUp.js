@@ -38,6 +38,7 @@ const SignUp = () => {
     e.preventDefault();
     if (validateForm()) {
       try {
+        console.log('Submitting form data:', formData);
         const response = await fetch('https://vercel-backend-1-jr7k.onrender.com/api/signup', {
           method: 'POST',
           headers: {
