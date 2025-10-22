@@ -93,7 +93,7 @@ export default function DoctorDashboard() {
     fetchPatientsWithAppointments();
     fetchAppointments();
   }, []);
-const BASE_URL = "https://vercel-backend-beta-eight.vercel.app";
+const BASE_URL = "https://vercel-backend-1-jr7k.onrender.com";
   useEffect(() => {
     if (appointmentData.patientId) {
       fetchExistingPrescriptions(appointmentData.patientId);
